@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RealEstate_Dapper_Api.Dtos;
+using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 using RealEstate_Dapper_Api.Repositories.CategoryRepository;
 
 namespace RealEstate_Dapper_Api.Controllers
@@ -39,6 +39,12 @@ namespace RealEstate_Dapper_Api.Controllers
         {
             await _categoryRepository.UpdateCategoryAsync(updateCategoryDto);
             return Ok("Category updated successfully");
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategory(int id)
+        {
+            var value = await _categoryRepository.GetCategoryAsync(id);
+            return Ok(value);
         }
     }
 }

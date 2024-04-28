@@ -1,6 +1,6 @@
-﻿using RealEstate_Dapper_Api.Dtos;
-using RealEstate_Dapper_Api.Models.DapperContext;
+﻿using RealEstate_Dapper_Api.Models.DapperContext;
 using Dapper;
+using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 
 namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
 {
@@ -52,6 +52,17 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
             using( var connection = _context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);
+            }
+        }
+        public async Task<GetByIDCategoryDto> GetCategoryAsync(int id)
+        {
+            string query = "select * from Category where CategoryID=@categoryID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryID", id);
+            using(var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryFirstOrDefaultAsync<GetByIDCategoryDto>(query, parameters);
+                return values;
             }
         }
     }

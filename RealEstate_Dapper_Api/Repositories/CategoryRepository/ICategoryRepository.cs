@@ -1,4 +1,4 @@
-﻿using RealEstate_Dapper_Api.Dtos;
+﻿using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 
 namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
 {
@@ -8,5 +8,6 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
         Task CreateCategoryAsync(CreateCategoryDto categoryDto);
         Task DeleteCategoryAsync(int id);
         Task UpdateCategoryAsync(UpdateCategoryDto categoryDto);
+        Task<GetByIDCategoryDto> GetCategoryAsync(int id);
     }
 }
